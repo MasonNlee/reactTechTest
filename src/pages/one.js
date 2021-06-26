@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Button } from './Button';
 
 /**
  * 
@@ -14,11 +15,32 @@ import React from 'react';
  * 
  */
 
-export default function One() {
+ class One extends Component {
+  // Constructor initialize state to one
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1
+    };
+  }
 
-  return (
-    <div>
-        Question one
-    </div>
-  );
+  // Counter increment 
+  handleCount(value) {
+    this.setState((prevState) => ({ count: prevState.count + value }));
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Counter: {this.state.count}</h1>
+        <br/>
+        <Button
+          count={this.state.count}
+          updateCount={this.handleCount.bind(this)}
+        />
+      </div>
+    );
+  }
 }
+
+export default One;

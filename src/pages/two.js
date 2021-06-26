@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom'
 
 /**
  * 
@@ -10,27 +11,28 @@ import React, { useEffect } from 'react';
  * 
  */
 
-const Two = () => {
 
-    useEffect(() => {
-        const onScroll = (e) => {
-          const yPos = window.pageYOffset;
-          console.log(yPos)
-        };
+ const Two = () => {
 
-        window.addEventListener("scroll", onScroll);
-    
-        return () => window.removeEventListener("scroll", onScroll);;
-      }, []);
+  useEffect(() => {
+      const onScroll = (e) => {
+        const yPos = window.pageYOffset;
+        console.log(yPos)
+      };
 
-  return (
-    <div style={{height: "150vh"}}>
-        <div style={{height: "50vh", width: "100px", overflow: "auto"}}>
-            <div id="scroll_log" style={{height: "200vh", backgroundColor: "green"}}>
-            </div>
-        </div>
-    </div>
-  );
+      window.addEventListener("scroll", onScroll);
+  
+      return () => window.removeEventListener("scroll", onScroll);;
+    }, []);
+
+return (
+  <div style={{height: "150vh"}}>
+      <div style={{height: "50vh", width: "100px", overflow: "auto"}}>
+          <div id="scroll_log" style={{height: "200vh", backgroundColor: "green"}}>
+          </div>
+      </div>
+  </div>
+);
 }
 
 export default Two;
