@@ -12,27 +12,39 @@ import ReactDOM from 'react-dom'
  */
 
 
- const Two = () => {
+class Two extends React.Component{
+  useEffect = (e) => {
+    let element = e.target;
+    console.log(element.scrollHeight, element.scrollTop);
+  };
 
-  useEffect(() => {
-      const onScroll = (e) => {
-        const yPos = window.pageYOffset;
-        console.log(yPos)
-      };
+  detectScroll = (e) =>{
+    var elmnt = document.getElementById("scroll_log");
+    console.log(elmnt);
+    var x = elmnt.scrollLeft;
+    var y = elmnt.scrollTop;
+    document.getElementById ("demo").innerHTML = "Horizontally: " + x + "px<br>Vertically: " + y + "px";
+  };
 
-      window.addEventListener("scroll", onScroll);
-  
-      return () => window.removeEventListener("scroll", onScroll);;
-    }, []);
-
-return (
-  <div style={{height: "150vh"}}>
-      <div style={{height: "50vh", width: "100px", overflow: "auto"}}>
-          <div id="scroll_log" style={{height: "200vh", backgroundColor: "green"}}>
-          </div>
+  render() {
+    return (
+      // <div style= {height: "150vh"}>
+      //     <div style= {height: "50vh", width: "100px", overflow: "auto"}>
+      //         <div id="scroll_log" onScroll={this.useEffect} style="height: \"200vh\", backgroundColor: \"green\"">
+      //         </div>
+      //     </div>
+      // </div>
+      <div>
+        <div style={{height: "150vh"}}>
+            <div style={{height: "50vh", width: "100px", overflow: "auto"}}>
+                <div id="scroll_log" onScroll={this.detectScroll} style={{height: "200vh", backgroundColor: "green"}}>
+                </div>
+            </div>
+        </div>
+        <p id="demo"></p>
       </div>
-  </div>
-);
+    )
+  }
 }
 
 export default Two;
